@@ -86,20 +86,21 @@ public class LoginActivity extends AppCompatActivity {
                 String uid = "USER_UID";
                 DbController.get(uid);
 
+                //Aqui he metido datos para comprobar el funcionamiento de los setText de las etiquetas
                 User nUser = new User();
                 nUser.uid = uid;
-                nUser.instagram = "INSTAGRAM-01";
-                nUser.facebook = "FACEBOOK-01";
-                nUser.google = "Google-01";
+                nUser.instagram = "Instagram";
+                nUser.facebook = "Facebook";
+                nUser.google = "Google";
                 nUser.img = "IMG--PATH";
                 nUser.name = "Nombre";
-                nUser.nick = "Apellidos";
-                nUser.tiktok = "TIK-TOK01";
-                nUser.twitch = "TWITCH01";
-                nUser.snapchat = "SNAPCHAT01";
-                nUser.linkedin = "LINKDEIN";
-                nUser.tinder = "TINDER";
-                nUser.twitter = "TWITTER";
+                nUser.nick = "Apellido";
+                nUser.tiktok = "Tiktok";
+                nUser.twitch = "Twitch";
+                nUser.snapchat = "Snapchat";
+                nUser.linkedin = "Lindekin";
+                nUser.tinder = "Tidner";
+                nUser.twitter = "Twitter";
 
                 DbController.saveUser(nUser);
                 sendEventLogin(nUser);
@@ -116,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
         btnTiktok.setOnClickListener(loginListener);
         btnTinder.setOnClickListener(loginListener);
         btnGmail.setOnClickListener(loginListener);
+
     }
 
     private void sendEventLogin(User user){

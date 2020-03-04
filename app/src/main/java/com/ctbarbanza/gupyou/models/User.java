@@ -4,9 +4,8 @@ import androidx.annotation.NonNull;
 
 public class User {
 
-
+    //Aquí he creado cada String que me faltaba, osea, cada red social
     public String uid;
-
     public String nick;
     public String name;
     public String img;

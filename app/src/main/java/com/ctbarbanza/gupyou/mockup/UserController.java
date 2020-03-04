@@ -30,8 +30,9 @@ public class UserController {
 
     private void setCurrentUser(){
         Random random = new Random();
-        User[] values = (User[]) users.values().toArray(); 
-        this.currentUser = values[random.nextInt(values.length)];
+        Object[] values = (Object[]) users.values().toArray();
+        Object obj = values[random.nextInt(values.length)];
+        this.currentUser = (User)obj;
     }
 
     private void generateDatos(){
@@ -139,7 +140,7 @@ public class UserController {
 
         for (Map.Entry<String, User> entry : this.users.entrySet()) {
             User user = entry.getValue();
-
+            //Aqui he hecho los que faltaban por hacer, completado!
             boolean cUid = user.uid.equals(uid);
             boolean cNick = user.nick.contains(nick);
             boolean cName = user.name.contains(name);
@@ -153,6 +154,7 @@ public class UserController {
             boolean cTwitch = user.twitch.contains(twitch);
             boolean cTinder = user.tinder.contains(tinder);
 
+            //Aqui he hecho los que faltaban por hacer, completado!
             if (cUid || cNick || cName || cFb || cG || cTw || cIns || cLin || cSnap || cTik || cTwitch || cTinder){
                 items.add(user);
                 continue;

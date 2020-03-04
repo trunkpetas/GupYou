@@ -30,29 +30,28 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         }
 
         DbController.get(user.uid);
-
         setText();
-
         updateProfileData();
+
     }
 
 
-
-
     private void setText(){
-
 
         Button btnSave = findViewById(R.id.act_perfil_usuario_save);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //este log.d es una comprobacion del texto que modifico para ver si lo cambia bien
+                Log.d("Perfil", user.tiktok);
                 DbController.saveUser(user);
                 UserController.init().saveCurrentUser(user);
             }
         });
 
-
-        EditText btnInstagram = findViewById(R.id.nick);
+        //Recoger los id de cada EditText para luego poder agregarle el texto...
+        EditText btnNick = findViewById(R.id.nick);
+        EditText btnInstagram = findViewById(R.id.instagram);
         EditText btnFacebook  =  findViewById(R.id.txtFca);
         EditText btnLinkedin  =  findViewById(R.id.linkedin);
         EditText btnTwitter   =  findViewById(R.id.twitter);
@@ -61,58 +60,44 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         EditText btnTiktok    =  findViewById(R.id.tiktok);
         EditText btnTinder    =  findViewById(R.id.tinder);
         EditText btnYoutube    = findViewById(R.id.youtube);
-
-        Log.d("Perfil", user.instagram);
-
-        if(this.user.instagram !=null){
-            btnInstagram.setText(""+this.user.instagram);
-        }
-
-        if(this.user.facebook !=null){
-            btnFacebook.setText(""+this.user.facebook);
-        }
-
-        if(this.user.linkedin !=null){
-            btnLinkedin.setText(""+this.user.linkedin);        }
-
-        if(this.user.twitter !=null){
-            btnTwitter.setText(""+this.user.twitter);        }
-
-        if(this.user.snapchat !=null){
-            btnSnapchat.setText(""+this.user.snapchat);        }
-
-        if(this.user.twitch !=null){
-            btnTwitch.setText(""+this.user.twitch);        }
-
-        if(this.user.tiktok !=null){
-
-            btnTiktok.setText(""+this.user.tiktok);        }
-
-        if(this.user.tinder !=null){
-            btnTinder.setText(""+this.user.tinder);
-        }
-
-        if(this.user.google !=null){
-            btnYoutube.setText(""+this.user.google);
-        }
+        EditText btnName    = findViewById(R.id.nombre);
 
 
+        //Agrego el texto correspondiente predeterminado
+        if(this.user.instagram !=null) btnInstagram.setText("" + this.user.instagram);
 
+        if(this.user.facebook !=null) btnFacebook.setText("" + this.user.facebook);
 
+        if(this.user.linkedin !=null) btnLinkedin.setText(""+this.user.linkedin);
 
+        if(this.user.twitter !=null) btnTwitter.setText(""+this.user.twitter);
 
+        if(this.user.snapchat !=null) btnSnapchat.setText(""+this.user.snapchat);
 
+        if(this.user.twitch !=null) btnTwitch.setText("" + this.user.twitch);
+
+        if(this.user.tiktok !=null) btnTiktok.setText("" + this.user.tiktok);
+
+        if(this.user.tinder !=null) btnTinder.setText("" + this.user.tinder);
+
+        if(this.user.google !=null) btnYoutube.setText("" + this.user.google);
+
+        if(this.user.name !=null) btnName.setText("" + this.user.nick);
+
+        if(this.user.nick !=null) btnNick.setText("" + this.user.name);
 
 
 
         btnInstagram.addTextChangedListener( new TextChangedListener<EditText>(btnInstagram) {
             @Override
+
+            //Aqui es donde recogemos el valor del txt que cambia, es decir si editas tu @ de instagram aqui es donde recoges ese texto modificado y abajo donde le pones el texto modificado a cada etiqueta que corresponda
             public void onTextChanged(EditText target, Editable s) {
                 String valor = target.getText().toString();
                 user.instagram = valor;
             }
         });
-
+        //Aqui es donde le pongo a las etiquetas el texto modificado
         String valor = btnInstagram.getText().toString();
         btnInstagram.setText(""+this.user.instagram);
 
@@ -201,6 +186,29 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
             }
         });
 
+        String valor9 = btnTinder.getText().toString();
+        btnTinder.setText(""+this.user.google);
+
+        btnName.addTextChangedListener( new TextChangedListener<EditText>(btnName) {
+            @Override
+            public void onTextChanged(EditText target, Editable s) {
+                String valor = target.getText().toString();
+                user.name = valor;
+            }
+        });
+
+        String valor10 = btnTinder.getText().toString();
+        btnTinder.setText(""+this.user.name);
+
+        btnNick.addTextChangedListener( new TextChangedListener<EditText>(btnNick) {
+            @Override
+            public void onTextChanged(EditText target, Editable s) {
+                String valor = target.getText().toString();
+                user.nick = valor;
+            }
+        });
+        String valor11 = btnTinder.getText().toString();
+        btnTinder.setText(""+this.user.nick);
 
 
     }
